@@ -1,0 +1,69 @@
+<div class="row justify-content-md-center mt-4">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                       <label>Employee List</label> 
+                    </div>
+                    <a class="btn btn-primary"  [routerLink]="['/employee-create']"> Add Employee</a>
+                </div>
+            </div>
+            <div class="card-body">
+              <table class="table border">
+                  <thead>
+                      <tr>
+                          <th>Id</th>
+                          <th>Name</th>
+                          <th>Grade</th>
+                          <!-- <th>Address</th>
+                          <th>Mobile Number</th> -->
+                          <th>Salary</th>
+                          <th>Action</th>
+                          <th>Status</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let em of employeeList">
+                          <td>{{em.employee_id}}</td>
+                          <td>{{em.name}}</td>
+                          <td>{{em.grade.grade_name}}</td>
+                          <!-- <td>{{em.address}}</td>
+                          <td>{{em.mobile_number}}</td> -->
+                          <td>{{em.bank_account.current_banlance }}</td>
+                          <td><button class="btn btn-primary" [disabled]="em.bank_account.status == 1" (click)="transferalary(em.id)">Transfer Salary</button></td> 
+                          <td> <label> {{em.bank_account.status == 1 ? "Transferred" : "Panding" }} </label> </td>
+                      </tr>
+                  </tbody>
+              </table>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-danger" (click)="pay()">Pay To All</button>
+            </div>
+          </div>
+    </div>
+</div>
+
+<div class="row justify-content-md-center mt-4">
+    <div class="col-md-10">
+        <div class="card">
+            <div class="card-header">
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                       <label>Company transition Info</label> 
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+              <div class="row justify-content-between">
+                  <div class="col-4">
+                      Total Paid Salary {{ totalPaid }} BDT
+                  </div>
+                  <div class="col-4">
+                      Remaining Balance {{ totalBalance }} BDT
+                  </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

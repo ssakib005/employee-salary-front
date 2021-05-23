@@ -1,0 +1,12 @@
+.side-nav {
+  width: 15vw;
+  height: 100vh;
+  background-color: black;
+  float: left;
+}
+
+.body-elements {
+  width: 80vw;
+  background-color: white;
+  float: left;
+}

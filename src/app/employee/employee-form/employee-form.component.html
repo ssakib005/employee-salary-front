@@ -1,0 +1,257 @@
+<div class="row justify-content-center mt-4 mb-4">
+  <div class="col-md-6">
+    <div class="card">
+      <form
+        [formGroup]="employeeForm"
+        class="form-horizontal"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="card-header">
+          <div class="row justify-content-between">
+            <div class="col-4">
+              <label>Employee Info</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div
+            class="form-group"
+            [ngClass]="{ 'has-error': f.employeeId.errors }"
+          >
+            <label>Employee Id:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="employeeId"
+              placeholder="Enter 4 digit employee id"
+            />
+            <div
+              *ngIf="
+                f.employeeId.invalid &&
+                (f.employeeId.dirty || f.employeeId.touched)
+              "
+              class="alert alert-danger"
+            >
+              <span *ngIf="f.employeeId.errors?.required" class="help-block"
+                >Employee Id is required.</span
+              >
+              <div
+                *ngIf="
+                  f.employeeId.errors?.minlength ||
+                  f.employeeId.errors?.maxlength
+                "
+              >
+                Employee Id must be 4 Length Digit.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" formControlName="name" placeholder="Enter Name"/>
+            <div
+              *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="f.name.errors?.required">Name is required.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Grade:</label>
+            <select formControlName="grade" class="form-control">
+              <option disabled [value]="0">--Selecte Grades--</option>
+              <option *ngFor="let op of grades" [value]="op.id">{{ op.grade_name }}</option>
+            </select>
+            <div
+              *ngIf="f.grade.invalid && (f.grade.dirty || f.grade.touched)"
+              class="alert alert-danger"
+            >
+              <div *ngIf="f.grade.errors?.required">
+                Grade is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Address:</label>
+            <input type="text" class="form-control" formControlName="address" placeholder="Emter Address"/>
+            <div
+              *ngIf="
+                f.address.invalid && (f.address.dirty || f.address.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="f.address.errors?.required">
+                Address is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Mobile Number:</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="mobileNumber"
+              placeholder="Enter Mobile Number"
+            />
+            <div
+              *ngIf="
+                f.mobileNumber.invalid &&
+                (f.mobileNumber.dirty || f.mobileNumber.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="f.mobileNumber.errors?.required">
+                Mobile Number is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-header">
+          <div class="row justify-content-between">
+            <div class="col-4">
+              <label>Bank Account</label>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" formGroupName="bank">
+          <div class="form-group">
+            <label>Bank Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="bankName"
+              placeholder="Enter Bank Name"
+            />
+            <div
+              *ngIf="
+                g.bankName &&
+                g.bankName.invalid &&
+                (g.bankName.dirty || g.bankName.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="g.bankName.errors?.required">
+                Bank Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Branch Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="branchName"
+              placeholder="Enter Branch Name"
+            />
+            <div
+              *ngIf="
+                g.branchName &&
+                g.branchName.invalid &&
+                (g.branchName.dirty || g.branchName.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="g.branchName.errors?.required">
+                Branch Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Account Type:</label>
+            
+            <select formControlName="accountType" class="form-control" >
+              <option disabled [value]="0">--Selecte Account Type--</option>
+              <option *ngFor="let ty of types" [value]="ty.id">{{ ty.account_type }}</option>
+            </select>
+            <div
+              *ngIf="
+                g.accountType &&
+                g.accountType.invalid &&
+                (g.accountType.dirty || g.accountType.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="g.accountType.errors?.required">
+                Account Type is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Account Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="accountName"
+              placeholder="Enter Account Name"
+            />
+            <div
+              *ngIf="
+                g.accountName &&
+                g.accountName.invalid &&
+                (g.accountName.dirty || g.accountName.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="g.accountName.errors?.required">
+                Account Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Account Number:</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="accountNumber"
+              placeholder="Enter Account Number"
+            />
+            <div
+              *ngIf="
+                g.accountNumber &&
+                g.accountNumber.invalid &&
+                (g.accountNumber.dirty || g.accountNumber.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="g.accountNumber.errors?.required">
+                Account Number is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Current Balance:</label>
+            <input
+              type="number"
+              class="form-control"
+              formControlName="currentBalance"
+              placeholder="Enter Current Balance Default to 0"
+            />
+            <div
+              *ngIf="
+                g.currentBalance &&
+                g.currentBalance.invalid &&
+                (g.currentBalance.dirty || g.currentBalance.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div *ngIf="g.currentBalance.errors?.required">
+                Current Balance is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="row justify-content-end">
+            <button
+              type="submit"
+              [disabled]="!employeeForm.valid"
+              class="btn btn-primary"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
